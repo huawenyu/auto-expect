@@ -1,10 +1,10 @@
 #!/bin/bash
 
 help() {
-    echo " @_@ INSTALL rd into system."
-    echo "   `basename $0` -i rd -p /usr/local/bin/ -c ~/.rd.d/"
-    echo "          -n rd       command name, default rd"
-    echo "                      rd - remote login do ..."
+    echo " @_@ INSTALL rlog into system."
+    echo "   `basename $0` -i rlog -p /usr/local/bin/ -c ~/.rlog/"
+    echo "          -n rlog       command name, default rlog"
+    echo "                      rlog - remote login do ..."
     echo "          -i /usr/local/bin/"
     echo "                      install path, require sudo"
     echo
@@ -14,7 +14,7 @@ help() {
     exit 0
 }
 
-NAME_N=rd
+NAME_N=rlog
 PATH_I=/usr/local/bin
 ASK=true
 
@@ -30,7 +30,7 @@ do
     shift
 done
 
-echo "RUN: `basename $0` -i rd -p /usr/local/bin/ -c ~/.rd.d/"
+echo "RUN: `basename $0` -i rlog -p /usr/local/bin/ -c ~/.rlog/"
 if $ASK
 then
     echo -n " press any key to continue, 'q' to quit: "
@@ -40,7 +40,7 @@ then
     [[ $r == "q" || $r == "Q" ]] && { echo; exit 0; }
 fi
 
-PATH_C=$HOME/.$NAME_N.d
+PATH_C=$HOME/.$NAME_N
 
 # echo $NAME_N, $PATH_I, $PATH_C
 
@@ -62,7 +62,7 @@ chmod +x $NAME_N
 
 cat > $NAME_N <<<'#!/usr/bin/env expect
 
-set RC_PATH $env(HOME)/'".$NAME_N.d"'
+set RC_PATH $env(HOME)/'".$NAME_N"'
 set ETC_PATH '"/etc/$NAME_N.d/"'
 '
 
